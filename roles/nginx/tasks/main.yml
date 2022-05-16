@@ -1,0 +1,47 @@
+  - name: install pre-requsites (debian)
+    apt:
+      name:
+      - curl
+      - gnupg2
+      - ca-certificates
+      - lsb-release
+      - apt-transport-https
+      - software-properties-common
+      - unzip
+  - name: install nginx (debian)
+    apt:
+      name: nginx
+
+  - name: copy nginx site config
+    copy:
+      src: site.conf
+      dest: /etc/nginx/conf.d/site.conf
+      owner: root 
+      group: root
+      mode: 0644
+
+  - name: copy nginx gzip config
+    copy:
+      src: gzip.conf
+      dest: /etc/nginx/conf.d/gzip.conf
+      owner: root 
+      group: root
+      mode: 0644
+
+  - name: delete nginx main folder
+    file:
+      path: /var/www/html/index.nginx-debian.html
+      state: absent
+
+  - name: delete nginx default site
+    file:
+      path: /etc/nginx/sites-enabled/default
+      state: absent
+  
+  - name: create log directory
+    file:
+      path: /var/www/logs
+      state: directory
+      owner: www-data
+      group: www-data
+      mode: 0755
