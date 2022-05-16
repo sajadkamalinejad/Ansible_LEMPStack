@@ -14,4 +14,5 @@
   roles:
     - nginx
     - php
+    - mysql
     - tweaks
