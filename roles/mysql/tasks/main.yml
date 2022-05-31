@@ -27,5 +27,6 @@
       state: absent
       login_user: root
       login_password: "sunset@123"
+    notify: restart_mysql
 
 
