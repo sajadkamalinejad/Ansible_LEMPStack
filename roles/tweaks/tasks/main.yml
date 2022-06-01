@@ -1,22 +1,22 @@
   - name: copy php defult page
     copy:
       src: index.php
-      dest: /var/www/html/index.php
+      dest: /var/www/{{ project_name }}/index.php
       owner: www-data 
       group: www-data
       mode: 0644
 
   - name: fix folder permissions
-    shell: find /var/www/html -type d -exec chmod 755 {} \;
+    shell: find /var/www/{{ project_name }} -type d -exec chmod 755 {} \;
 
   - name: fix files permissions
-    shell: find /var/www/html -type f -exec chmod 644 {} \;
+    shell: find /var/www/{{ project_name }} -type f -exec chmod 644 {} \;
 
   - name: fix files owners
     shell: chown -R www-data:www-data /var/www/
   
   - name: fix files ids
-    shell: chmod -R g+s /var/www/html
+    shell: chmod -R g+s /var/www/{{ project_name }}
 
   - name: Tweak PHP 1 0f 18
     lineinfile:

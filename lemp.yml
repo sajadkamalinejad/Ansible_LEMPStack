@@ -3,7 +3,7 @@
 - hosts: all
   become: true
   pre_tasks:
-  - name: update debian
+  - name: update_server
     apt:
       upgrade: dist
       update_cache: yes

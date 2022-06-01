@@ -10,7 +10,7 @@
   - name: Sets the root password
     mysql_user:
       name: root
-      password: "sunset@123"
+      password: "{{ mysql_root_password }}"
       login_unix_socket: /var/run/mysqld/mysqld.sock
 
   - name: Removes the MySQL test database
@@ -18,7 +18,7 @@
       name: test
       state: absent
       login_user: root
-      login_password: "sunset@123"
+      login_password: "{{ mysql_root_password }}"
         
   - name: Removes all anonymous user accounts
     mysql_user:
@@ -26,7 +26,7 @@
       host_all: yes
       state: absent
       login_user: root
-      login_password: "sunset@123"
+      login_password: "{{ mysql_root_password }}"
     notify: restart_mysql
 
 

@@ -13,22 +13,6 @@
     apt:
       name: nginx
 
-  - name: copy nginx site config
-    copy:
-      src: site.conf
-      dest: /etc/nginx/conf.d/site.conf
-      owner: root 
-      group: root
-      mode: 0644
-
-  - name: copy nginx gzip config
-    copy:
-      src: gzip.conf
-      dest: /etc/nginx/conf.d/gzip.conf
-      owner: root 
-      group: root
-      mode: 0644
-
   - name: delete nginx main folder
     file:
       path: /var/www/html/index.nginx-debian.html
@@ -38,7 +22,15 @@
     file:
       path: /etc/nginx/sites-enabled/default
       state: absent
-  
+
+  - name: create Project directory
+    file:
+      path: /var/www/{{ project_name }}
+      state: directory
+      owner: www-data
+      group: www-data
+      mode: 0755
+
   - name: create log directory
     file:
       path: /var/www/logs
@@ -46,3 +38,10 @@
       owner: www-data
       group: www-data
       mode: 0755
+
+  - name: Copy Nginx Config
+    template: src=site.conf dest=/etc/nginx/conf.d/site.conf
+
+  - name: Copy Nginx gzip config
+    template: src=gzip.conf dest=/etc/nginx/conf.d/gzip.conf
+    notify: restart_nginx
