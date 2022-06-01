@@ -1,6 +1,6 @@
 ## Ansible  LEMP stack  on Debian 11
 This playbook will install  **LEMP Stack** on debian 11. To run this script you need to have a fresh VPS with debian 11 installed. The minimum hardware requirements for the server is:
-**CPU:** 2 vCores or more
+__ CPU: __ 2 vCores or more
 **RAM:** 2 Gigabytes or more
 **DISK:** 20 Gigabytes or more
 
