@@ -1,3 +1,2 @@
 [lemp_servers]
-# you can add mysql_servers in case if you want to seperate the database
 192.168.122.10

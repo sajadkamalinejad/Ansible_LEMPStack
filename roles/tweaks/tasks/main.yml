@@ -14,10 +14,7 @@
 
   - name: fix files owners
     shell: chown -R www-data:www-data /var/www/
-  
-  - name: fix files ids
-    shell: chmod -R g+s /var/www/{{ project_name }}
-
+    
   - name: Tweak PHP 1 0f 18
     lineinfile:
       path: /etc/php/8.0/cli/php.ini
